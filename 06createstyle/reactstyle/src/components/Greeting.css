@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.card {
+  background-color: lightblue;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+.heading_text,
+.para_text {
+  color: black;
+  margin: 5px;
+}
