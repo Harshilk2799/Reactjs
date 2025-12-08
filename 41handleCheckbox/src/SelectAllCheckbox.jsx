@@ -1,0 +1,92 @@
+import { useState } from "react";
+
+function SelectAllCheckbox() {
+  const [language, setLanguage] = useState({
+    html: false,
+    css: false,
+    js: false,
+  });
+
+  function handleChange(e) {
+    const key = e.target.name;
+    const { checked } = e.target;
+    setLanguage((prevState) => {
+      return { ...prevState, [key]: checked };
+    });
+  }
+  //   const isAllChecked = Object.values(language).every((item) => item === true);
+  const isAllChecked = Object.values(language).every(Boolean);
+
+  return (
+    <div>
+      <div>
+        <label htmlFor="selectAll">Select All</label>
+        <input
+          id="selectAll"
+          type="checkbox"
+          checked={isAllChecked}
+          onChange={(e) => {
+            setLanguage({
+              html: e.target.checked,
+              css: e.target.checked,
+              js: e.target.checked,
+            });
+          }}
+        />
+      </div>
+
+      {/* <div>
+        <label htmlFor="html">HTML</label>
+        <input
+          id="html"
+          type="checkbox"
+          name="html"
+          checked={language.html}
+          //   onChange={(e) => setLanguage({ ...language, html: e.target.checked })}
+          onChange={handleChange}
+        />
+      </div> */}
+      {/* <div>
+        <label htmlFor="css">CSS</label>
+        <input
+          id="css"
+          type="checkbox"
+          name="css"
+          checked={language.css}
+          //   onChange={(e) => setLanguage({ ...language, css: e.target.checked })}
+          onChange={handleChange}
+        />
+      </div> */}
+      {/* <div>
+        <label htmlFor="js">JS</label>
+        <input
+          id="js"
+          type="checkbox"
+          name="js"
+          checked={language.js}
+          //   onChange={(e) => setLanguage({ ...language, js: e.target.checked })}
+          onChange={handleChange}
+        />
+      </div> */}
+
+      {/*  2nd Way */}
+      {Object.keys(language).map((item) => {
+        return (
+          <div key={item}>
+            <label htmlFor={item}>{item}</label>
+            <input
+              id={item}
+              type="checkbox"
+              name={item}
+              checked={language[item]}
+              //   onChange={(e) => setLanguage({ ...language, js: e.target.checked })}
+              onChange={handleChange}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default SelectAllCheckbox;
